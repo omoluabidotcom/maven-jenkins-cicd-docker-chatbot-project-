@@ -1,24 +1,32 @@
 pipeline {
   agent any
+
   environment {
-    IMAGE_NAME = 'java-webapp'
+    IMAGE_NAME = 'springai-3.5.4'
   }
+
   stages {
+
     stage('Clone') {
       steps {
-        git credentialsId: 'github-secret', url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
+        git branch: 'main',
+            credentialsId: 'github-secret',
+            url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
       }
     }
+
     stage('Maven Build') {
       steps {
         sh 'mvn clean install -pl webapp -am'
       }
     }
+
     stage('Build Docker Image') {
       steps {
         sh 'docker build -t $IMAGE_NAME .'
       }
     }
+
     stage('Run Container') {
       steps {
         sh '''
@@ -27,5 +35,6 @@ pipeline {
         '''
       }
     }
+
   }
 }
