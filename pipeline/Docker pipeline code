@@ -17,7 +17,7 @@ pipeline {
 
     stage('Maven Build') {
       steps {
-        sh 'mvn clean install -pl webapp -am'
+        sh 'mvn clean install -pl springai-3.5.4 -am'
       }
     }
 
