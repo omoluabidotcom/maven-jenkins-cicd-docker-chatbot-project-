@@ -60,7 +60,7 @@ RUN sed -i '/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/d' $C
 EXPOSE 8080
 
 # ✅ Deploy WAR
-COPY --from=build /app/webapp/target/springai-3.5.4.war $CATALINA_HOME/webapps/springai-3.5.4.war
+COPY --from=build /src/target/target/springai-3.5.4.war $CATALINA_HOME/webapps/springai-3.5.4.war
 
 # Start Tomcat
 CMD ["catalina.sh", "run"]
