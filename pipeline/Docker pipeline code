@@ -10,14 +10,14 @@ pipeline {
     stage('Clone') {
       steps {
         git branch: 'main',
-            credentialsId: 'github-secret',
+            credentialsId: 'github-creds',
             url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
       }
     }
 
     stage('Maven Build') {
       steps {
-        sh 'mvn clean install -pl springai-3.5.4 -am'
+        sh 'mvn clean install springai-3.5.4'
       }
     }
 

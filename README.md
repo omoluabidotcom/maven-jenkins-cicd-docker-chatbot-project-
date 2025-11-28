@@ -176,7 +176,7 @@ git push -u origin main
 1. Go to Jenkins → Manage Jenkins → Credentials → (Global) → Add Credentials
 2. Choose:
     - Kind: **Username & Password** OR **GitHub PAT**
-    - ID: `github-secret`
+    - ID: `github-creds`
 
 ---
 
@@ -198,7 +198,7 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git credentialsId: 'github-secret', url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
+        git credentialsId: 'github-creds', url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
       }
     }
     stage('Maven Build') {
@@ -444,7 +444,7 @@ pipeline {
     stage('Clone') {
       when { expression { !params.DESTROY } }
       steps {
-        git credentialsId: 'github-creds', url: 'https://github.com/OphirCloud/maven-jenkins-cicd-docker-eks-project.git'
+        git credentialsId: 'github-creds', url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
       }
     }
 
