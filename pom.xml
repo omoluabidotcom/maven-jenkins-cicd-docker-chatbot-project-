@@ -10,7 +10,7 @@
     </parent>
     <groupId>springai</groupId>
     <artifactId>springai</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+<!--    <version>0.0.1-SNAPSHOT</version>-->
     <name>springai</name>
     <packaging>war</packaging>
     <description>springai</description>
