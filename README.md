@@ -198,7 +198,7 @@ pipeline {
   stages {
     stage('Clone') {
       steps {
-        git credentialsId: 'github-secret', url: 'https://github.com/OphirCloud/maven-jenkins-cicd-docker-eks-project.git'
+        git credentialsId: 'github-secret', url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
       }
     }
     stage('Maven Build') {
