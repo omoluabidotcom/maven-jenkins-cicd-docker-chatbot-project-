@@ -40,6 +40,8 @@ RUN apt-get update && apt-get install -y \
 
 ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
+ENV CATALINA_OUT=/proc/self/fd/1
+ENV CATALINA_ERR=/proc/self/fd/2
 
 # Tomcat version
 #ENV TOMCAT_VERSION=9.0.95
