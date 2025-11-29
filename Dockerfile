@@ -34,15 +34,21 @@ ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
 
 # Tomcat version
-ENV TOMCAT_VERSION=9.0.95
+#ENV TOMCAT_VERSION=9.0.95
+ENV TOMCAT_VERSION=10.1.24
 ENV CATALINA_HOME=/opt/tomcat
 ENV PATH=$CATALINA_HOME/bin:$PATH
 
 # Download and setup Tomcat
-RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz && \
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-10/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz && \
     mkdir -p $CATALINA_HOME && \
     tar xzvf /tmp/tomcat.tar.gz -C $CATALINA_HOME --strip-components=1 && \
-    rm /tmp/tomcat.tar.gz
+    rm /tmp/tomcat.tar.gz \
+
+#RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz && \
+#    mkdir -p $CATALINA_HOME && \
+#    tar xzvf /tmp/tomcat.tar.gz -C $CATALINA_HOME --strip-components=1 && \
+#    rm /tmp/tomcat.tar.gz
 
 # ✅ Setup Tomcat users for GUI access
 RUN echo '<tomcat-users>' > $CATALINA_HOME/conf/tomcat-users.xml && \
