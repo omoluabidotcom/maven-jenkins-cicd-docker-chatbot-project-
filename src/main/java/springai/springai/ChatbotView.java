@@ -34,7 +34,7 @@ public class ChatbotView extends VerticalLayout {
     public ChatbotView() {
 
         this.webClient = WebClient.builder()
-                .baseUrl("http://localhost:8080")
+                .baseUrl("http://54.205.209.80/springai-3.5.4")
                 .build();
 
         setSizeFull();
