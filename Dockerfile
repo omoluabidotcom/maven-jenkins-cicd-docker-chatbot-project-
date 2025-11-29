@@ -25,7 +25,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
-    openjdk-11-jdk \
+    openjdk-21-jdk \
     wget \
     curl \
     && rm -rf /var/lib/apt/lists/*
