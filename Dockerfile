@@ -22,7 +22,10 @@ ENV PATH=$JAVA_HOME/bin:$PATH
 WORKDIR /src
 
 COPY . .
-RUN mvn clean package
+RUN mvn clean package -Pproduction
+
+# Run the Maven build in production mode so Vaadin generates flow-build-info.json
+RUN mvn -DskipTests -Dvaadin.productionMode=true -Pproduction package
 
 # === Stage 2: Runtime with Tomcat and Manager GUI ===
 FROM ubuntu:20.04
