@@ -73,6 +73,12 @@ RUN sed -i '/<Valve className="org.apache.catalina.valves.RemoteAddrValve"/d' $C
 # Expose port
 EXPOSE 8080
 
+# Forward Tomcat logs to Docker stdout
+RUN ln -sf /dev/stdout $CATALINA_HOME/logs/catalina.out
+RUN ln -sf /dev/stdout $CATALINA_HOME/logs/catalina.log
+RUN ln -sf /dev/stdout $CATALINA_HOME/logs/localhost.log
+RUN ln -sf /dev/stderr $CATALINA_HOME/logs/localhost_access_log.txt
+
 # ✅ Deploy WAR
 COPY --from=build /src/target/springai-3.5.4.war $CATALINA_HOME/webapps/springai-3.5.4.war
 
