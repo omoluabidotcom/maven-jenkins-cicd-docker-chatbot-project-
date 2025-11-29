@@ -155,6 +155,7 @@ public class ChatbotView extends VerticalLayout {
                             restoreInput();
                         })),
                         error -> getUI().ifPresent(ui -> ui.access(() -> {
+                            System.out.println("Errorrrrrrrrrrrrrrrrrrrrrr: " + error.getMessage());
                             messageContainer.remove(typingIndicator);
                             Notification.show("Error: Unable to get response.", 3000, Notification.Position.TOP_CENTER)
                                     .addThemeVariants(NotificationVariant.LUMO_ERROR);
