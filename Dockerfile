@@ -43,7 +43,7 @@ ENV PATH=$CATALINA_HOME/bin:$PATH
 RUN wget https://archive.apache.org/dist/tomcat/tomcat-10/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz && \
     mkdir -p $CATALINA_HOME && \
     tar xzvf /tmp/tomcat.tar.gz -C $CATALINA_HOME --strip-components=1 && \
-    rm /tmp/tomcat.tar.gz \
+    rm /tmp/tomcat.tar.gz
 
 #RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tar.gz && \
 #    mkdir -p $CATALINA_HOME && \
