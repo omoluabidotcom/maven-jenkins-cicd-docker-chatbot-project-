@@ -17,7 +17,7 @@ pipeline {
 
     stage('Maven Build') {
       steps {
-        sh 'mvn clean install'
+         sh 'mvn clean install -Pproduction -DskipTests -Dvaadin.productionMode=true'
       }
     }
 
