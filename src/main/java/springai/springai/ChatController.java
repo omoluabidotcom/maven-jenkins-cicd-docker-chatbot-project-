@@ -27,13 +27,6 @@ class ChatController {
         return new Output(response);
     }
 
-//    @GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-//    public Flux<String> streamChat() {
-//        return chatClient.prompt("What is Spring AI?")
-//                .stream()
-//                .content();
-//    }
-
     @GetMapping("/stream/chat")
     public String streamChatt(Input input) {
         return chatClient.prompt(input.prompt)

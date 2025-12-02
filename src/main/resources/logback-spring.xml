@@ -1,4 +1,3 @@
-<!-- file: src/main/resources/logback-spring.xml -->
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

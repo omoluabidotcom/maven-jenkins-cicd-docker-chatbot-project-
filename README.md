@@ -1,11 +1,28 @@
-# 🚀 Jenkins CI/CD + Docker for Java Web App
+# 🚀 Maven-Jenkins-CICD-Docker-Chatbot-Project
 
+A robust CI/CD pipeline implementation for deploying a chatbot application using Maven, Jenkins, and Docker. This project demonstrates modern DevOps practices with automated building, testing, and deployment workflows.
 
-This is a sample project demonstrating CI/CD pipeline using Maven, Jenkins and Docker.
+## Features
+Automated build pipeline using Jenkins
+Containerized deployment with Docker
+Maven-based Java project structure
+Continuous Integration and Continuous Deployment
+Chatbot application with RESTful endpoints
+Automated testing suite
+Docker image optimization
+
+## 🛠️ Tech Stack
+Java 17
+SpringAI
+Vaadin
+Maven
+Jenkins
+Docker
+Git
 
 ## Project Architecture
 
-![Architecture Diagram]()
+![Architecture Diagram](https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-/blob/main/Images/Architecture%20Image.png)
 
 ### Objective:
 
@@ -196,11 +213,13 @@ pipeline {
     IMAGE_NAME = 'springai-3.5.4'
   }
   stages {
-    stage('Clone') {
-      steps {
-        git credentialsId: 'github-creds', url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
+      stage('Clone') {
+          steps {
+              git branch: 'main',
+                      credentialsId: 'github-creds',
+                      url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
+          }
       }
-    }
     stage('Maven Build') {
       steps {
         sh 'mvn clean install'
@@ -274,7 +293,7 @@ docker rm java-webapp-container
 docker rmi java-webapp
 
 #🔁 Rebuild the Docker Image
-docker build -t java-webapp .
+docker build -t java-webapp-container .
 
 #🚀 Run the Container (exposing port 8080)
 docker run -d --name java-webapp-container -p 8080:8080 java-webapp
@@ -283,7 +302,7 @@ docker run -d --name java-webapp-container -p 8080:8080 java-webapp
 docker logs java-webapp-container
 
 # 📥 Copy Files From a Running Container
-docker cp java-webapp-container:/opt/tomcat/webapps/webapp.war ./webapp.war
+docker cp java-webapp-container:/opt/tomcat/webapps/springai-3.5.4.war ./springai-3.5.4.war
 
 #🖥️ Access Container Shell
 docker exec -it java-webapp-container bash
@@ -293,7 +312,6 @@ docker container prune -f
 docker image prune -f
 
 #📋 List Docker Images
-
 docker images
 
 ```
@@ -337,12 +355,12 @@ docker images
       +------------------------------------------------------------+
                                                     |
                                                     v
-                                 Web App available at http://<EC2-IP:8080/chat>
+                                 Web App available at http://<EC2-IP:80/chat>
 ```
 
 ---
 
-## ✅ What You Achieved
+## ✅ What We Achieved
 
 | ✅ Task | Done |
 |--------|------|
@@ -380,7 +398,7 @@ ls -l
 
 cd target/
 ls -l
-# webapp.war should be here
+# springai-3.5.4.war should be here
 ```
 
 ---
@@ -407,7 +425,7 @@ Then Jenkins archives the WAR file under:
 docker exec -it <container_id> bash
 cd /opt/tomcat/webapps/
 ls -l
-# You’ll see: webapp.war and expanded webapp/
+# You’ll see: springai-3.5.4.war and expanded webapp/
 ```
 
 
@@ -444,14 +462,14 @@ pipeline {
     stage('Clone') {
       when { expression { !params.DESTROY } }
       steps {
-        git credentialsId: 'github-creds', url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
+        git branch: 'main', credentialsId: 'github-creds', url: 'https://github.com/omoluabidotcom/maven-jenkins-cicd-docker-chatbot-project-.git'
       }
     }
 
     stage('Maven Build') {
       when { expression { !params.DESTROY } }
       steps {
-        sh 'mvn clean install -pl webapp -am'
+        sh 'mvn clean install springai-3.5.4'
       }
     }
 
@@ -500,27 +518,4 @@ pipeline {
 
 ```
 
----
-
-### ✅ How to Use It
-
-1. Click **“Build with Parameters”**
-2. ✅ Tick the checkbox **“DESTROY”**
-3. 💥 The pipeline will:
-    - Stop and remove the container
-    - Remove the image
-    - Clean the workspace
-
----
-
-### 🔥 Output Example (when DESTROY is checked)
-
-```
-🧨 Destroying container, image, and cleaning workspace...
-Stopping and removing container...
-Removing Docker image...
-Cleaning Jenkins workspace...
-```
-
------
 ---
